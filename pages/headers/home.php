@@ -63,6 +63,22 @@ $mainPlug = new mainClass();
   </script>
 </head>
 
+
+<?php
+
+if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
+
+  $image_upload_val = array(
+      'slider_img' => new CurlFile($_FILES['slider_img']['tmp_name'], $_FILES['slider_img']['type'], $_FILES['slider_img']['name']),
+  );
+  $_POST['file'] = $image_upload_val;
+
+  $result = $mainPlug->postAPI('addSlider', $_POST);
+  var_dump($result);
+  die();
+}
+
+?>
 <body>
   <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
@@ -86,7 +102,7 @@ $mainPlug = new mainClass();
                   <p class="card-description">
                     Basic form layout
                   </p>
-                  <form class="forms-sample">
+                  <form method="POST" class="forms-sample">
                     <div class="form-group">
                       <label>File upload</label>
                       <input type="file" name="slider_img" class="file-upload-default">
@@ -132,15 +148,21 @@ $mainPlug = new mainClass();
                       </div>
                     </div>
                     </div>
+                    <?php
+                          $causes_result = $mainPlug->homeHeaders('causes-btn');
+                          foreach($causes_result->data as $data)
+                      ?>
 
                     <div class="form-group">
                     <label for="exampleFormControlSelect1">Donation Cause</label>
                     <select class="form-control form-control-lg" name="donation_cause" id="donate_btn" disabled>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                    <?php
+                    foreach($causes_result->data as $data){
+                    ?>
+                      <option value="<?php echo $data->id ?>"><?php echo $data->caption ?></option>
+                    <?php 
+                    }
+                    ?>
                     </select>
                   </div>
 
@@ -149,8 +171,8 @@ $mainPlug = new mainClass();
                       <input type="text" name="video_link" class="form-control" id="video_link" placeholder="Youtube URL" disabled>
                   </div>
 
-                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
+                    <button type="submit" name="submit" value="submit_home_header" class="btn btn-primary mr-2">Submit</button>
+                    <button type="reset" class="btn btn-light">Cancel</button>
                   </form>
                 </div>
               </div>
@@ -209,9 +231,7 @@ $mainPlug = new mainClass();
                           }
                           ?>
 
-                          <!-- echo $data->home_slider_img; ?> -->
-                          <!-- <td class="text-danger"><i class="mdi mdi-close"></i></td>
-                          <td class="text-success"><i class="mdi mdi-check"></i></td> -->
+
                           <td>
                             <button type="button" class="btn btn-inverse-danger btn-icon">
                             <i class="mdi mdi-delete"></i>
