@@ -68,13 +68,13 @@ $mainPlug = new mainClass();
 
 if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
 
-  $image_upload_val = array(
-      'slider_img' => new CurlFile($_FILES['slider_img']['tmp_name'], $_FILES['slider_img']['type'], $_FILES['slider_img']['name']),
-  );
-  $_POST['file'] = $image_upload_val;
+  // $image_upload_val = array(
+  //     'slider_img' => new CurlFile($_FILES['slider_img']['tmp_name'], $_FILES['slider_img']['type'], $_FILES['slider_img']['name']),
+  // );
+  // $_POST['file'] = $image_upload_val;
 
-  $result = $mainPlug->postAPI('addSlider', $_POST);
-  var_dump($result);
+  $result = $mainPlug->callAPI('addSlider', 'POST', $_POST);
+  print_r($result);
   die();
 }
 
@@ -102,12 +102,12 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
                   <p class="card-description">
                     Basic form layout
                   </p>
-                  <form method="POST" class="forms-sample">
+                  <form method="POST" action="" enctype="multipart/form-data" class="forms-sample">
                     <div class="form-group">
                       <label>File upload</label>
                       <input type="file" name="slider_img" class="file-upload-default">
                       <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                        <input type="text" name="slider_img" class="form-control file-upload-info" disabled placeholder="Upload Image">
                         <span class="input-group-append">
                           <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                         </span>
