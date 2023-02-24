@@ -74,7 +74,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
   // $_POST['file'] = $image_upload_val;
 
   $result = $mainPlug->callAPI('addSlider', 'POST', $_POST);
-  print_r($result);
+  var_dump($result);
   die();
 }
 

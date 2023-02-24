@@ -12,15 +12,14 @@ class mainClass{
         // processing image
         
         
-        $target_dir = "images/uploads/";
+        $target_dir = "images/uploads/headers/";
         $datetime = date("Ymdhis");
         $imageName = str_replace(' ', '', basename($name));
         $target_file = $target_dir . $datetime . $imageName;
-        $flieLoc = '../images/uploads/'. $datetime . $imageName;
+        $flieLoc = '../../images/uploads/headers/'. $datetime . $imageName;
         $allowedExts = array("png", "PNG", "SVG", "svg,", "JPG", "jpg", "JPEG", "jpeg", "webp");
         $extension = strtolower(pathinfo($name, PATHINFO_EXTENSION));
-        // $imageLink = 'http://localhost/dosh-cms/'.$target_file;
-        $imageLink = 'http://dosh.interactivedigital.com.gh/admin/'.$target_file;
+        $imageLink = 'https://mcgncms.test/'.$target_file;
         
         // if ((($type == "image/svg")
         // || ($type == "image/jpeg") ||($type == "image/png"))
@@ -29,8 +28,9 @@ class mainClass{
         $min_height = 500;
         $min_width = 800;
 
-        if(($image_height <= $max_height && $image_height >= $min_height) && ($image_width <= $max_width && $image_width >= $min_width))
-        {
+      //   DIMENSIONS CHECKER 
+      //   if(($image_height <= $max_height && $image_height >= $min_height) && ($image_width <= $max_width && $image_width >= $min_width))
+      //   {
         
         if($size <= 1*MB)
         
@@ -42,22 +42,13 @@ class mainClass{
             return $error;
             }
           else
-            {                
-              move_uploaded_file($tmp_name, $flieLoc);
+            {  
+               $returnArr = array('imageLink' => $imageLink, 'tmp_name' => $tmp_name, 'fileLoc' => $flieLoc);              
 
-              return $imageLink;
-            //   $uploadStatus = $this->uploadHomepageSliders($data, $imageLink);
-            //   if($uploadStatus == 'good'){
-            //     return 'good';
-            //   }else{
-            //     return 'formerror';
-            //   }
-            // echo "Upload: " . $_FILES["slide-1"]["name"] . "<br />";
-            // echo "Type: " . $_FILES["slide-1"]["type"] . "<br />";
-            // echo "Size: " . ($_FILES["slide-1"]["size"] / 1024) . " Kb<br />";
-            // echo "Temp file: " . $_FILES["slide-1"]["tmp_name"] . "<br />";
-        
-              // echo "Stored in: " . "../images/uploads/" . $_FILES["slide-1"]["name"];
+
+            //   move_uploaded_file($tmp_name, $flieLoc);
+
+              return $returnArr;
               
             }
         }else{
@@ -69,9 +60,9 @@ class mainClass{
           return "size_err";
           // PRINT_R($_FILES["file"]["size"]);
           }
-        }else{
-            return "dimension_err";
-        }
+      //   }else{
+      //       return "dimension_err";
+      //   }
         
 
       }
@@ -119,19 +110,22 @@ class mainClass{
 
         $image_width = $arr[0];
         $image_height = $arr[1];
-        $slider_img_link = $this->processImage($name, $type, $size, $tmp_name, $error, $image_width, $image_height);
+        $returnArr = $this->processImage($name, $type, $size, $tmp_name, $error, $image_width, $image_height);
 
-        if($slider_img_link == 'ext_err')
+        if($returnArr == 'ext_err')
            {
-             $data['slider_image'] =  $slider_img_link;
-           }elseif($slider_img_link == 'file_err')
+             $data['slider_image'] =  $returnArr;
+           }elseif($returnArr == 'file_err')
            {
-              $data['slider_image'] =  $slider_img_link;
-           }elseif($slider_img_link == 'dimension_err')
+              $data['slider_image'] =  $returnArr;
+           }elseif($returnArr == 'dimension_err')
            {
-              $data['slider_image'] =  $slider_img_link;
+              $data['slider_image'] =  $returnArr;
            }
 
+         $data['imageLink'] = $returnArr['imageLink'];
+
+         //   array_push($data, $returnArr['imageLink']);
         
         $url = "https://mcgnapp.test/api/".$apiName;
 
@@ -157,7 +151,13 @@ class mainClass{
         curl_close($curl);
         $response_data = json_decode($response);
 
-        return $response;
+      //   return $response_data;
+        if(!isset($response_data->error)){
+         move_uploaded_file($returnArr['tmp_name'], $returnArr['fileLoc']);
+         return $response_data->message;
+        }else{
+         return $response_data->errors;
+        }
                 }
 
 
