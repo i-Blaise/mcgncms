@@ -101,6 +101,9 @@ class mainClass{
 
     
     public function callAPI($apiName, $method, $data){
+
+        if(!empty(basename($_FILES["slider_img"]["name"])))
+        {
         $name = $_FILES["slider_img"]["name"];
         $type = $_FILES["slider_img"]["type"];
         $size = $_FILES["slider_img"]["size"];
@@ -124,6 +127,7 @@ class mainClass{
            }
 
          $data['imageLink'] = $returnArr['imageLink'];
+        }
 
          //   array_push($data, $returnArr['imageLink']);
         
@@ -151,12 +155,14 @@ class mainClass{
         curl_close($curl);
         $response_data = json_decode($response);
 
-      //   return $response_data;
-        if(!isset($response_data->error)){
+      //   return $response_data->errors;
+        if(!isset($response_data->errors)){
          move_uploaded_file($returnArr['tmp_name'], $returnArr['fileLoc']);
-         return $response_data->message;
+         $resultArr = array('status' => true, 'message' => $response_data->message); 
+         return $resultArr;
         }else{
-         return $response_data->errors;
+         $resultArr = array('status' => false, 'message' => $response_data->errors); 
+         return $resultArr;
         }
                 }
 

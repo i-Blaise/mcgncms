@@ -30,6 +30,18 @@ $mainPlug = new mainClass();
   <!-- endinject -->
   <link rel="shortcut icon" href="../../images/favicon.png" />
 
+
+    	<!-- Notification -->
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Toastr -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+
+
+
+
   <script src="../../vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>    
   <script>
       tinymce.init({
@@ -59,6 +71,15 @@ $mainPlug = new mainClass();
 	  }
    });
  
+  //  function codeAddress() {
+  //       $(document).ready(function() {
+  //       toastr.options.positionClass = 'toast-top-center';
+  //       toastr.options.closeButton = true;
+  //       toastr.options.progressBar = true;
+  //       toastr.options.timeOut = 30000;
+  //       toastr.success('Footer Updated', '');
+  //   });
+  //       }
 
   </script>
 </head>
@@ -74,8 +95,36 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
   // $_POST['file'] = $image_upload_val;
 
   $result = $mainPlug->callAPI('addSlider', 'POST', $_POST);
-  var_dump($result);
+  // var_dump($result);
+  // die();
+  if($result['status']){  
+    ?>
+       <script type='text/javascript'>   
+      // var test = >;
+      alert('<?php echo $result['message'] ?>');
+
+
+      </script>
+
+  <?php
+  }else{
+      var_dump($result);
   die();
+  }
+
+  // die();
+
+
+
+  // <script type='text/javascript'>   
+  //       $(document).ready(function() {
+  //       toastr.options.positionClass = 'toast-top-center';
+  //       toastr.options.closeButton = true;
+  //       toastr.options.progressBar = true;
+  //       toastr.options.timeOut = 30000;
+  //       toastr.success('Footer Updated', 'Success');
+  //   });
+  //   </script>";
 }
 
 ?>
@@ -208,7 +257,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
                             <img src="<?php echo $data->home_slider_img; ?>" alt="image"/>
                           </td>
                           <?php
-                          if($data->video_link != NULL){
+                          if($data->donation_cause != NULL){
                           ?>
                           <td class="text-success"><i class="mdi mdi-check"></i></td>
                           <?php
@@ -220,7 +269,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
                           ?>
 
                           <?php
-                          if($data->donation_cause != NULL){
+                          if($data->video_link != NULL){
                           ?>
                           <td class="text-success"><i class="mdi mdi-check"></i></td>
                           <?php
@@ -304,6 +353,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
   document.getElementById("video_link").disabled = true;
   }
   }
+
   </script>
 
 </body>
