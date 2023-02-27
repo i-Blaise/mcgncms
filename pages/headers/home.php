@@ -101,8 +101,13 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
     ?>
        <script type='text/javascript'>   
       // var test = >;
-      alert('<?php echo $result['message'] ?>');
-
+      $(document).ready(function() {
+      toastr.options.positionClass = 'toast-top-center';
+      toastr.options.closeButton = true;
+      toastr.options.progressBar = true;
+      toastr.options.timeOut = 30000;
+      toastr.success('<?php echo $result['message'] ?>', 'Success');
+  });
 
       </script>
 

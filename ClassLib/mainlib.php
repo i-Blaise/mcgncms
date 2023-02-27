@@ -100,6 +100,11 @@ class mainClass{
             }
 
     
+
+
+
+
+
     public function callAPI($apiName, $method, $data){
 
         if(!empty(basename($_FILES["slider_img"]["name"])))
@@ -115,15 +120,21 @@ class mainClass{
         $image_height = $arr[1];
         $returnArr = $this->processImage($name, $type, $size, $tmp_name, $error, $image_width, $image_height);
 
+      //   return $returnArr;
+
         if($returnArr == 'ext_err')
            {
-             $data['slider_image'] =  $returnArr;
+            //  $data['slider_image'] =  $returnArr;
+            return $returnArr;
+
            }elseif($returnArr == 'file_err')
            {
-              $data['slider_image'] =  $returnArr;
+            //   $data['slider_image'] =  $returnArr;
+              return $returnArr;
            }elseif($returnArr == 'dimension_err')
            {
-              $data['slider_image'] =  $returnArr;
+            //   $data['slider_image'] =  $returnArr;
+            return $returnArr;
            }
 
          $data['imageLink'] = $returnArr['imageLink'];
@@ -157,73 +168,17 @@ class mainClass{
 
       //   return $response_data->errors;
         if(!isset($response_data->errors)){
+         if(isset($returnArr['tmp_name']) && isset($returnArr['fileLoc']))
+         {
          move_uploaded_file($returnArr['tmp_name'], $returnArr['fileLoc']);
+         }
          $resultArr = array('status' => true, 'message' => $response_data->message); 
          return $resultArr;
         }else{
          $resultArr = array('status' => false, 'message' => $response_data->errors); 
          return $resultArr;
         }
-                }
-
-
-
-
-
-               //  function callAPI($apiName, $method, $data){
-               //    $name = $_FILES["slider_img"]["name"];
-               //    $type = $_FILES["slider_img"]["type"];
-               //    $size = $_FILES["slider_img"]["size"];
-               //    $error = $_FILES["slider_img"]["error"];
-               //    $tmp_name = $_FILES["slider_img"]["tmp_name"];
-               //    $arr = getimagesize($_FILES["slider_img"]["tmp_name"]);
-  
-               //    $image_width = $arr[0];
-               //    $image_height = $arr[1];
-               //    $slider_img_link = $this->processImage($name, $type, $size, $tmp_name, $error, $image_width, $image_height);
-
-               //    if($slider_img_link == 'ext_err')
-               //       {
-               //         $data['slider_image'] =  $slider_img_link;
-               //       }elseif($slider_img_link == 'file_err')
-               //       {
-               //          $data['slider_image'] =  $slider_img_link;
-               //       }elseif($slider_img_link == 'dimension_err')
-               //       {
-               //          $data['slider_image'] =  $slider_img_link;
-               //       }
-
-               //      $url = "https://mcgnapp.test/api/".$apiName;
-               //      $curl = curl_init();
-               //      switch ($method){
-               //         case "POST":
-               //            curl_setopt($curl, CURLOPT_POST, 1);
-               //            if ($data)
-               //               curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-               //            break;
-               //         case "PUT":
-               //            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
-               //            if ($data)
-               //               curl_setopt($curl, CURLOPT_POSTFIELDS, $data);			 					
-               //            break;
-               //         default:
-               //            if ($data)
-               //               $url = sprintf("%s?%s", $url, http_build_query($data));
-               //      }
-               //      // OPTIONS:
-               //      curl_setopt($curl, CURLOPT_URL, $url);
-               //      curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-               //         'APIKEY: 111111111111111111111',
-               //         'Content-Type: application/json',
-               //      ));
-               //      curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-               //      curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-               //      // EXECUTE:
-               //      $result = curl_exec($curl);
-               //      if(!$result){die("Connection Failure");}
-               //      curl_close($curl);
-               //      return $result;
-               //   }
-
+                
+      }
 
 }

@@ -2,7 +2,7 @@
         <div class="user-profile">
           <div class="user-image">
         <!-- CHANGE IMAGE PATH WHEN DEPLOYED  -->
-              <img src="https://mcgncms.test/cms/images/faces/face28.png">
+              <img src="https://mcgncms.test/images/faces/face28.png">
           </div>
           <div class="user-name">
               Edward Spencer
