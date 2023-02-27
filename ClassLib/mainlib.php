@@ -135,6 +135,10 @@ class mainClass{
            {
             //   $data['slider_image'] =  $returnArr;
             return $returnArr;
+           }elseif($returnArr == 'size_err')
+           {
+            //   $data['slider_image'] =  $returnArr;
+            return $returnArr;
            }
 
          $data['imageLink'] = $returnArr['imageLink'];

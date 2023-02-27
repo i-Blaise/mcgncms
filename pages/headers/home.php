@@ -97,7 +97,59 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
   $result = $mainPlug->callAPI('addSlider', 'POST', $_POST);
   // var_dump($result);
   // die();
-  if($result['status']){  
+  if(isset($result['status']) && $result['status'] == false){  
+    $message = json_decode(json_encode($result['message']), true);
+      print_r($message);
+      die();
+
+    foreach($result['message']->desc as $error_message)
+    {
+      // echo $error_message;
+      // die();
+      ?>
+     <script type='text/javascript'>   
+     $(document).ready(function() {
+     toastr.options.positionClass = 'toast-top-center';
+     toastr.options.closeButton = true;
+     toastr.options.progressBar = true;
+     toastr.options.timeOut = 30000;
+     toastr.error('<?php echo $error_message ?>', 'Error');
+     });
+
+     </script>
+
+      <?php
+    }
+  }elseif(isset($result['message'])){
+    // $message = json_decode(json_encode($result['message']), true);
+    //   print_r($message);
+    //   die();
+
+      foreach($result['message']->desc as $error_message)
+      {
+        // echo $error_message;
+        // die();
+        ?>
+       <script type='text/javascript'>   
+       $(document).ready(function() {
+       toastr.options.positionClass = 'toast-top-center';
+       toastr.options.closeButton = true;
+       toastr.options.progressBar = true;
+       toastr.options.timeOut = 30000;
+       toastr.error('<?php echo $error_message ?>', 'Error');
+       });
+ 
+       </script>
+ 
+        <?php
+      }
+
+
+  }else{
+    echo 'jjhjh';
+      // print_r($result['message']);
+      die();
+
     ?>
        <script type='text/javascript'>   
       // var test = >;
@@ -106,15 +158,12 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
       toastr.options.closeButton = true;
       toastr.options.progressBar = true;
       toastr.options.timeOut = 30000;
-      toastr.success('<?php echo $result['message'] ?>', 'Success');
-  });
+      toastr.error('<?php echo $result ?>', 'Error');
+      });
 
       </script>
 
   <?php
-  }else{
-      var_dump($result);
-  die();
   }
 
   // die();
