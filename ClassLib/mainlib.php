@@ -116,8 +116,10 @@ class mainClass{
         $tmp_name = $_FILES["slider_img"]["tmp_name"];
         $arr = getimagesize($_FILES["slider_img"]["tmp_name"]);
 
-        $image_width = $arr[0];
-        $image_height = $arr[1];
+        
+          
+        $image_width = isset($arr[0]) ? $arr[0] : null;
+        $image_height = isset($arr[1]) ? $arr[1] : null;
         $returnArr = $this->processImage($name, $type, $size, $tmp_name, $error, $image_width, $image_height);
 
       //   return $returnArr;

@@ -108,6 +108,8 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
       </script>
 
   <?php
+  // FOR FORMS REPOPULATION 
+  unset($_POST);
   }elseif(isset($result['message']) && is_object($result['message'])){
     $message = json_decode(json_encode($result['message']), true);
       // print_r($message);
@@ -132,9 +134,8 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
 
 
   }else{
-    // echo 'jjhjh';
-      // print_r($result['message']);
-      die();
+      // var_dump($result);
+      // die();
 
     ?>
        <script type='text/javascript'>   
@@ -194,9 +195,9 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
                   <form method="POST" action="" enctype="multipart/form-data" class="forms-sample">
                     <div class="form-group">
                       <label>File upload</label>
-                      <input type="file" name="slider_img" class="file-upload-default">
+                      <input type="file" name="slider_img" class="file-upload-default" value="<?php echo isset($_POST['slider_img']) ? $_POST['slider_img'] : null; ?>">
                       <div class="input-group col-xs-12">
-                        <input type="text" name="slider_img" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                        <input type="text" name="slider_img" class="form-control file-upload-info" disabled value="<?php echo isset($_POST['slider_img']) ? $_POST['slider_img'] : null; ?>" placeholder="Upload Image">
                         <span class="input-group-append">
                           <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                         </span>
@@ -205,12 +206,13 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
 
                     <div class="form-group">
                       <label for="exampleInputUsername1">Caption</label>
-                      <input type="text" name="caption" class="form-control" id="exampleInputUsername1" placeholder="Username">
+                      <input type="text" name="caption" class="form-control" id="exampleInputUsername1" value="<?php echo isset($_POST['caption']) ? $_POST['caption'] : null; ?>" placeholder="Caption">
                     </div>
 
                     <div class="form-group">
                       <label for="exampleInputUsername1">Description</label>
-                      <textarea id='edit' name="desc" style="margin-top: 30px;" placeholder="Type some text">
+                      <textarea id='edit' name="desc" style="margin-top: 30px;"  placeholder="Type some text">
+                      <?php echo isset($_POST['desc']) ? $_POST['desc'] : null; ?>
                     </textarea>
                     </div>
 
