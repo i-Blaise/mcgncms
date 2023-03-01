@@ -206,7 +206,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
 
                     <div class="form-group">
                       <label for="exampleInputUsername1">Caption</label>
-                      <input type="text" name="caption" class="form-control" id="exampleInputUsername1" value="<?php echo isset($_POST['caption']) ? $_POST['caption'] : null; ?>" placeholder="Caption">
+                      <input type="text" name="caption" class="form-control" id="exampleInputUsername1" value="<?php echo isset($_POST['caption']) ? $_POST['caption'] : null; ?>" placeholder="Caption" maxlength="50">
                     </div>
 
                     <div class="form-group">
@@ -214,6 +214,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
                       <textarea id='edit' name="desc" style="margin-top: 30px;"  placeholder="Type some text">
                       <?php echo isset($_POST['desc']) ? $_POST['desc'] : null; ?>
                     </textarea>
+                    <p class="form-info">For best result, keep description under 600 characters</p>
                     </div>
 
 
