@@ -23,16 +23,16 @@ class mainClass{
         
         // if ((($type == "image/svg")
         // || ($type == "image/jpeg") ||($type == "image/png"))
-        $max_height = 1080;
+        $max_height = 810;
         $max_width = 1920;
-        $min_height = 500;
+        $min_height = 800;
         $min_width = 800;
 
       //   DIMENSIONS CHECKER 
-      //   if(($image_height <= $max_height && $image_height >= $min_height) && ($image_width <= $max_width && $image_width >= $min_width))
-      //   {
+        if($image_height <= $max_height && $image_height >= $min_height)
+        {
         
-        if($size <= 1*MB)
+        if($size <= 2*MB)
         
           {
             if(in_array($extension, $allowedExts))
@@ -60,9 +60,9 @@ class mainClass{
           return "size_err";
           // PRINT_R($_FILES["file"]["size"]);
           }
-      //   }else{
-      //       return "dimension_err";
-      //   }
+        }else{
+            return "dimension_err";
+        }
         
 
       }
@@ -126,20 +126,17 @@ class mainClass{
 
         if($returnArr == 'ext_err')
            {
-            //  $data['slider_image'] =  $returnArr;
-            return $returnArr;
+            $errorMsg = 'Acceptable image extentions are: png, jpeg, jpg, svg & webp';
+            return $errorMsg;
 
-           }elseif($returnArr == 'file_err')
-           {
-            //   $data['slider_image'] =  $returnArr;
-              return $returnArr;
            }elseif($returnArr == 'dimension_err')
            {
-            //   $data['slider_image'] =  $returnArr;
-            return $returnArr;
+            $errorMsg = 'Image height must be 810px';
+            return $errorMsg;
            }elseif($returnArr == 'size_err')
            {
-            //   $data['slider_image'] =  $returnArr;
+            $errorMsg = 'Image should not be more than 2MB in size';
+            return $errorMsg;
             return $returnArr;
            }
 

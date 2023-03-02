@@ -202,6 +202,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
                           <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                         </span>
                       </div>
+                    <p class="form-info">For best result, image height should be 810px</p>
                     </div>
 
                     <div class="form-group">
