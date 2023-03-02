@@ -90,7 +90,7 @@ $mainPlug = new mainClass();
 if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
 
 
-  $result = $mainPlug->callAPI('addSlider', 'POST', $_POST);
+  $result = $mainPlug->callAPIwImage('addSlider', 'POST', $_POST);
   // var_dump($result);
   // die();
   if(isset($result['status']) && $result['status'] == true){  
@@ -289,13 +289,9 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
                       <tbody>
                       <?php
                           $header_result = $mainPlug->homeHeaders('homeHeaders');
-                          // $header_data = mysqli_fetch_assoc($header_result);
-                          // var_dump($header_result);
-
-                          // print_r($header_result->status);
                           foreach($header_result->data as $data){
                       ?>
-                        <tr>
+                        <tr id="row<?php echo $data->id; ?>">
                           <td class="py-1">
                             <img src="<?php echo $data->home_slider_img; ?>" alt="image"/>
                           </td>
@@ -325,7 +321,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
 
 
                           <td>
-                            <button type="button" class="btn btn-inverse-danger btn-icon">
+                            <button type="button" onclick="deleteHeader(<?php echo $data->id; ?>)" class="btn btn-inverse-danger btn-icon">
                             <i class="mdi mdi-delete"></i>
                             </button>
                           </td>
@@ -396,6 +392,24 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
   document.getElementById("video_link").disabled = true;
   }
   }
+
+
+
+function deleteHeader(headerID){
+    let text = "Are you sure you want to delete this Header? \n This action can't be undone.";
+    if (confirm(text) == true) {
+    let apiName = 'deleteHeader';
+    document.getElementById("row"+headerID).remove();
+    $.get("../../ClassLib/deleteHeader.php", {headerID: headerID, apiName: apiName}, 
+    function(){
+        toastr.options.positionClass = 'toast-top-center';
+        toastr.options.closeButton = true;
+        toastr.options.progressBar = true;
+        toastr.options.timeOut = 30000;
+        toastr.success('Header Deleted', 'Success');
+    });
+  }
+}
 
   </script>
 
