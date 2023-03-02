@@ -1,3 +1,7 @@
+<?php
+  // echo dirname(basename(__FILE__));
+  // die();
+?>
 <!DOCTYPE html>
 <html lang="en">
 

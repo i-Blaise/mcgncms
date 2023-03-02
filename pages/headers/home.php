@@ -1,7 +1,8 @@
 <?php
 require_once('../../ClassLib/mainlib.php');
 $mainPlug = new mainClass();
-
+// echo dirname(basename(__FILE__));
+// die();
 ?>
 
 <!DOCTYPE html>

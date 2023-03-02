@@ -1,8 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="user-profile">
           <div class="user-image">
-        <!-- CHANGE IMAGE PATH WHEN DEPLOYED  -->
-              <img src="https://mcgncms.test/images/faces/face28.png">
+              <img src="/images/faces/face28.png">
           </div>
           <div class="user-name">
               Edward Spencer
@@ -13,26 +12,26 @@
         </div>
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.php">
+            <a class="nav-link" href="/index.php">
               <i class="icon-box menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#headers" aria-expanded="false" aria-controls="headers">
               <i class="icon-disc menu-icon"></i>
               <span class="menu-title">Headers</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="headers">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/headers/home.php">Home</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Other Pages</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/pages/headers/home.php">Home</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/pages/headers/other-pages.php">Other Pages</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/aboutus/">
+            <a class="nav-link" href="/pages/aboutus/">
               <i class="icon-file menu-icon"></i>
               <span class="menu-title">About Us</span>
             </a>
@@ -45,8 +44,8 @@
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/buttons.html">Buttons</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/pages/ui-features/typography.html">Typography</a></li>
               </ul>
             </div>
           </li>
