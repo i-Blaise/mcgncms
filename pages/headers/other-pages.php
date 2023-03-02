@@ -99,7 +99,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Striped Table</h4>
+                  <h4 class="card-title">All Pages Headers</h4>
                   <p class="card-description">
                     Add class <code>.table-striped</code>
                   </p>
@@ -108,10 +108,10 @@
                       <thead>
                         <tr>
                           <th>
-                            User
+                            Page
                           </th>
                           <th>
-                            First name
+                            Header Image
                           </th>
                           <th>
                             Progress
