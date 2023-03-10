@@ -1,3 +1,8 @@
+<?php
+require_once('../../ClassLib/mainlib.php');
+$mainPlug = new mainClass();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,6 +85,12 @@
       <div class="main-panel">        
         <div class="content-wrapper">
 
+
+        <?php
+            $about_result = $mainPlug->APICall('about/aboutData', 'GET');
+            // print_r($about_result); die();
+        ?>
+
         <div class="row">
             <div class="col-md-8 grid-margin stretch-card">
               <div class="card">
@@ -111,7 +122,8 @@
                 <div class="card-body">
                   <h4 class="card-title">Preview Current About Image</h4>
                   <p class="card-description">Click<code>image</code> below <code> to view large</p>
-                  <img class="img-thumbnail" src="https://mcgncms.test/images/uploads/headers/20230302040118carousel-3.jpg" alt="Paris">
+                  <img class="img-thumbnail" src="
+                    <?php  echo $about_result->data[0]->aboutus_desc_img;?>" alt="Paris">
                 </div>
               </div>
             </div>
@@ -128,7 +140,9 @@
                   </p>
                     <div class="form-group">
                       <label for="exampleTextarea1">Textarea</label>
-                      <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4">
+                      <?php  echo $about_result->data[0]->aboutus_caption;?>
+                      </textarea>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
@@ -150,6 +164,7 @@
                   <div class="form-group">
                       <label for="exampleInputUsername1">Description</label>
                       <textarea id='edit' name="desc" style="margin-top: 30px;"  placeholder="Type some text">
+                      <?php  echo $about_result->data[0]->about;?>
                     </textarea>
                     <p class="form-info">For best result, keep description under 600 characters</p>
                   </div>
@@ -174,6 +189,7 @@
                   <div class="form-group">
                       <label for="exampleInputUsername1">Description</label>
                       <textarea id='edit' name="desc" style="margin-top: 30px;"  placeholder="Type some text">
+                      <?php  echo $about_result->data[0]->mission;?>
                     </textarea>
                     <p class="form-info">For best result, keep description under 600 characters</p>
                   </div>
@@ -198,6 +214,7 @@
                   <div class="form-group">
                       <label for="exampleInputUsername1">Description</label>
                       <textarea id='edit' name="desc" style="margin-top: 30px;"  placeholder="Type some text">
+                      <?php  echo $about_result->data[0]->vision;?>
                     </textarea>
                     <p class="form-info">For best result, keep description under 600 characters</p>
                   </div>

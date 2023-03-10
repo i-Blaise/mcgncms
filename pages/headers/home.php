@@ -91,7 +91,7 @@ $mainPlug = new mainClass();
 if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
 
 
-  $result = $mainPlug->callAPIwImage('addSlider', 'POST', $_POST);
+  $result = $mainPlug->callAPIwImage('header/addSlider', 'POST', $_POST);
   // var_dump($result);
   // die();
   if(isset($result['status']) && $result['status'] == true){  
@@ -243,8 +243,8 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
                     </div>
                     </div>
                     <?php
-                          $causes_result = $mainPlug->homeHeaders('causes-btn');
-                          foreach($causes_result->data as $data)
+                          $causes_result = $mainPlug->homeHeaders('header/causes-btn');
+                          // foreach($causes_result->data as $data)
                       ?>
 
                     <div class="form-group">
@@ -290,7 +290,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
                       </thead>
                       <tbody>
                       <?php
-                          $header_result = $mainPlug->homeHeaders('homeHeaders');
+                          $header_result = $mainPlug->homeHeaders('header/homeHeaders');
                           foreach($header_result->data as $data){
                       ?>
                         <tr id="row<?php echo $data->id; ?>">
@@ -400,7 +400,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
 function deleteHeader(headerID){
     let text = "Are you sure you want to delete this Header? \n This action can't be undone.";
     if (confirm(text) == true) {
-    let apiName = 'deleteHeader';
+    let apiName = 'header/deleteHeader';
     document.getElementById("row"+headerID).remove();
     $.get("../../ClassLib/deleteHeader.php", {headerID: headerID, apiName: apiName}, 
     function(){
