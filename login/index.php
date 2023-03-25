@@ -31,7 +31,7 @@
 <?php
 if(isset($_POST['submit']) && $_POST['submit'] == 'login')
 { 
-	$url = "https://mcgnapp.test/api/login";
+	$url = "massivecheerfulgiving.com/api/login";
 	$postParameter = array(
 		'email' => $_POST['email'],
 		'password' => $_POST['password']
