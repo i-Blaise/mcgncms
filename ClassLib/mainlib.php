@@ -145,7 +145,7 @@ class mainClass{
 
          //   array_push($data, $returnArr['imageLink']);
         
-        $url = "https://mcgnapp.test/api/".$apiName;
+        $url = "massivecheerfulgiving.com//api/".$apiName;
 
         $curl = curl_init();
 
@@ -187,7 +187,7 @@ class mainClass{
 
       public function deleteHeaderAPI($apiName, $id){
 
-        $url = "https://mcgnapp.test/api/".$apiName."/".$id;
+        $url = "massivecheerfulgiving.com//api/".$apiName."/".$id;
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -210,7 +210,7 @@ class mainClass{
 
       public function APICall($apiName, $verb, $id=false,){
 
-        $url = "https://mcgnapp.test/api/".$apiName."/".$id;
+        $url = "massivecheerfulgiving.com//api/".$apiName."/".$id;
         // return $url;
         $curl = curl_init();
 
