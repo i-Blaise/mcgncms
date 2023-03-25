@@ -2,7 +2,9 @@
 require_once('../../ClassLib/mainlib.php');
 $mainPlug = new mainClass();
 // echo dirname(basename(__FILE__));
+//  var_dump($mainPlug->homeHeaders('header/causes-btn'));
 // die();
+
 ?>
 
 <!DOCTYPE html>
@@ -291,6 +293,8 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit_home_header'){
                       <tbody>
                       <?php
                           $header_result = $mainPlug->homeHeaders('header/homeHeaders');
+                          // var_dump($header_result);
+                          // die();
                           foreach($header_result->data as $data){
                       ?>
                         <tr id="row<?php echo $data->id; ?>">

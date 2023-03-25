@@ -79,7 +79,9 @@ class mainClass{
         // Initiate curl session in a variable (resource)
         $curl_handle = curl_init();
         
-        $url = "massivecheerfulgiving.com/api/".$apiName;
+
+        // $url = "https://mcgnapp.test/api/".$apiName;
+        $url = "http://www.massivecheerfulgiving.com/api/".$apiName;
         
         // Set the curl URL option
         curl_setopt($curl_handle, CURLOPT_URL, $url);
@@ -145,7 +147,7 @@ class mainClass{
 
          //   array_push($data, $returnArr['imageLink']);
         
-        $url = "massivecheerfulgiving.com/api/".$apiName;
+        $url = "http://www.massivecheerfulgiving.com/api/".$apiName;
 
         $curl = curl_init();
 
@@ -187,7 +189,7 @@ class mainClass{
 
       public function deleteHeaderAPI($apiName, $id){
 
-        $url = "massivecheerfulgiving.com/api/".$apiName."/".$id;
+        $url = "http://www.massivecheerfulgiving.com/api/".$apiName."/".$id;
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -210,7 +212,7 @@ class mainClass{
 
       public function APICall($apiName, $verb, $id=false,){
 
-        $url = "massivecheerfulgiving.com/api/".$apiName."/".$id;
+        $url = "http://www.massivecheerfulgiving.com/api/".$apiName."/".$id;
         // return $url;
         $curl = curl_init();
 
