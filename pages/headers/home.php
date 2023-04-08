@@ -2,8 +2,9 @@
 require_once('../../ClassLib/mainlib.php');
 $mainPlug = new mainClass();
 // echo dirname(basename(__FILE__));
-//  var_dump($mainPlug->homeHeaders('header/causes-btn'));
-// die();
+ var_dump($mainPlug->homeHeaders('header/causes-btn'));
+// $causes_result = $mainPlug->homeHeaders('header/causes-btn');
+die();
 
 ?>
 
